@@ -1,27 +1,27 @@
 <script setup>
-
+import { ref } from "vue";
+import { countryList, cityPerCountry, neighborhoodPerCity } from "../constants/countries";
+let country = ref("");
+let city = ref("");
+let neighborhood = ref("");
 
 </script>
 
 <template>
+  {{ country }}
   <div class="form">
+
     <label for="country">Country</label>
-    <select id="country">
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
+    <select id="country" v-model="country">
+      <option v-for="country in countryList" :key="country">{{ country }}</option>
     </select>
-    <label for="city">City</label>
-    <select>
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
+    <label for="city" >City</label>
+    <select v-model="city">
+     <option v-for="city in cityPerCountry[country]" :key="city">{{ city }}</option>
     </select>
     <label for="neighborhood">City</label>
-    <select>
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
+    <select v-model="neighborhood">
+     <option v-for="neighborhood in neighborhoodPerCity[city]" :key="neighborhood">{{ neighborhood }}</option>
     </select>
   </div>
 
